@@ -271,9 +271,19 @@
                     <div class="section-divider"></div>
                 </div>
 
+                <div class="project-toolbar reveal" aria-label="Filter projects">
+                    <div class="project-filters" role="group" aria-label="Project categories">
+                        <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All work</button>
+                        <button class="filter-btn" type="button" data-filter="web" aria-pressed="false">Web</button>
+                        <button class="filter-btn" type="button" data-filter="it" aria-pressed="false">IT &amp; networking</button>
+                        <button class="filter-btn" type="button" data-filter="iot" aria-pressed="false">IoT</button>
+                    </div>
+                    <span class="project-count" id="projectCount" aria-live="polite">6 projects</span>
+                </div>
+
                 <div class="projects-grid">
                     <!-- Project 1: IoT Hydroponics (REAL from resume) -->
-                    <article class="project-card reveal">
+                    <article class="project-card reveal" data-category="iot">
                         <div class="project-status status-completed">
                             <span class="status-dot"></span> Academic / Completed
                         </div>
@@ -305,7 +315,7 @@
                     </article>
 
                     <!-- Project 2: Full-Stack Web App (REAL from resume) -->
-                    <article class="project-card reveal">
+                    <article class="project-card reveal" data-category="web">
                         <div class="project-status status-completed">
                             <span class="status-dot"></span> Academic / Completed
                         </div>
@@ -338,7 +348,7 @@
                     </article>
 
                     <!-- Project 3: Network Design (REAL from resume) -->
-                    <article class="project-card reveal">
+                    <article class="project-card reveal" data-category="it">
                         <div class="project-status status-completed">
                             <span class="status-dot"></span> Academic / Completed
                         </div>
@@ -370,7 +380,7 @@
                     </article>
 
                     <!-- Project 4: Personal Portfolio -->
-                    <article class="project-card reveal">
+                    <article class="project-card reveal" data-category="web">
                         <div class="project-status status-completed">
                             <span class="status-dot"></span> Personal / Completed
                         </div>
@@ -403,7 +413,7 @@
                     </article>
 
                     <!-- Project 5: Task Management (Planned) -->
-                    <article class="project-card reveal">
+                    <article class="project-card reveal" data-category="web">
                         <div class="project-status status-dev">
                             <span class="status-dot"></span> In Development
                         </div>
@@ -432,7 +442,7 @@
                     </article>
 
                     <!-- Project 6: IT Inventory Management (Planned) -->
-                    <article class="project-card reveal">
+                    <article class="project-card reveal" data-category="it">
                         <div class="project-status status-planned">
                             <span class="status-dot"></span> Planned
                         </div>

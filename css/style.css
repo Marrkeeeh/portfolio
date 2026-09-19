@@ -679,6 +679,54 @@ body.dark .theme-toggle .icon-moon { display: none; }
     margin: 0 auto;
 }
 
+.project-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin: -24px auto 28px;
+    max-width: 1000px;
+}
+
+.project-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filter-btn {
+    padding: 8px 13px;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-bg-card);
+    color: var(--color-text-muted);
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    color: var(--color-text-inverse);
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    transform: translateY(-1px);
+}
+
+.filter-btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+.project-count {
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
 /* ---------- About Section ---------- */
 .about-grid {
     display: grid;
@@ -826,6 +874,7 @@ body.dark .skill-icon {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    position: relative;
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
@@ -833,6 +882,24 @@ body.dark .skill-icon {
     transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
     border-color: var(--color-primary-light);
+}
+
+.project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(240px circle at var(--pointer-x, 50%) var(--pointer-y, 0%), var(--color-primary-light), transparent 70%);
+    transition: opacity 0.25s ease;
+}
+
+.project-card:hover::after {
+    opacity: 0.22;
+}
+
+.project-card.is-filtered {
+    display: none;
 }
 
 .project-status {
@@ -1584,6 +1651,12 @@ body.dark .form-group textarea:focus {
     .projects-grid {
         grid-template-columns: 1fr;
         gap: 18px;
+    }
+
+    .project-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+        margin-top: -16px;
     }
 
     .skills-grid,

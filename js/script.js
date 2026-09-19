@@ -13,6 +13,7 @@
         initSmoothScroll();
         initActiveNav();
         initScrollReveal();
+        initProjectFilters();
         initFooterYear();
         initContactForm();
         initBackToTop();
@@ -205,7 +206,49 @@
         }
     }
 
-    /* ---------- 7. Contact Form Validation (Client-Side Only) ---------- */
+    /* ---------- 7. Interactive Project Filters ---------- */
+    function initProjectFilters() {
+        const filters = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.project-card[data-category]');
+        const count = document.getElementById('projectCount');
+        if (filters.length === 0 || cards.length === 0) return;
+
+        function applyFilter(filter) {
+            let visibleCount = 0;
+
+            cards.forEach(function (card) {
+                const matches = filter === 'all' || card.dataset.category === filter;
+                card.classList.toggle('is-filtered', !matches);
+                if (matches) visibleCount += 1;
+            });
+
+            filters.forEach(function (button) {
+                const isActive = button.dataset.filter === filter;
+                button.classList.toggle('active', isActive);
+                button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+
+            if (count) {
+                count.textContent = visibleCount + (visibleCount === 1 ? ' project' : ' projects');
+            }
+        }
+
+        filters.forEach(function (button) {
+            button.addEventListener('click', function () {
+                applyFilter(button.dataset.filter);
+            });
+        });
+
+        cards.forEach(function (card) {
+            card.addEventListener('pointermove', function (event) {
+                const bounds = card.getBoundingClientRect();
+                card.style.setProperty('--pointer-x', (event.clientX - bounds.left) + 'px');
+                card.style.setProperty('--pointer-y', (event.clientY - bounds.top) + 'px');
+            });
+        });
+    }
+
+    /* ---------- 8. Contact Form Validation (Client-Side Only) ---------- */
     function initContactForm() {
         const form = document.getElementById('contactForm');
         if (!form) return;
@@ -347,7 +390,7 @@
         });
     }
 
-    /* ---------- 8. Back to Top Button ---------- */
+    /* ---------- 9. Back to Top Button ---------- */
     function initBackToTop() {
         const btn = document.getElementById('backToTop');
         if (!btn) return;
