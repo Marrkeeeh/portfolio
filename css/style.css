@@ -442,14 +442,14 @@ body.dark .theme-toggle .icon-moon { display: none; }
 
 .btn-secondary {
     background: var(--color-text-heading);
-    color: var(--color-text-inverse);
+    color: var(--color-bg);
     border-color: var(--color-text-heading);
 }
 
 .btn-secondary:hover {
     background: var(--color-text);
     border-color: var(--color-text);
-    color: var(--color-text-inverse);
+    color: var(--color-bg);
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
 }
