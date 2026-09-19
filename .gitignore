@@ -57,3 +57,5 @@ build/
 *.temp
 *.bak
 *.old
+
+Projects/LettuceGrow/lettucegrow-application/google-services.json
