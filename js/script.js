@@ -218,16 +218,7 @@
         const emailError = document.getElementById('emailError');
         const messageError = document.getElementById('messageError');
         const successMsg = document.getElementById('formSuccess');
-        const returnUrlInput = document.getElementById('contactReturnUrl');
-
-        if (returnUrlInput) {
-            returnUrlInput.value = window.location.origin + window.location.pathname + '?sent=1#contact';
-        }
-
-        if (new URLSearchParams(window.location.search).get('sent') === '1') {
-            successMsg.hidden = false;
-            window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
-        }
+        const submitButton = form.querySelector('button[type="submit"]');
 
         function setFieldError(input, errorEl, message) {
             if (message) {
@@ -305,15 +296,36 @@
 
         // Form submit
         form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
             const isNameValid = validateName();
             const isEmailValid = validateEmailField();
             const isMessageValid = validateMessage();
 
             if (!isNameValid || !isEmailValid || !isMessageValid) {
-                e.preventDefault();
                 successMsg.hidden = true;
                 return;
             }
+
+            submitButton.disabled = true;
+
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { Accept: 'application/json' }
+            })
+                .then(function (response) {
+                    if (!response.ok) throw new Error('Message could not be sent.');
+                    successMsg.hidden = false;
+                    form.reset();
+                })
+                .catch(function () {
+                    successMsg.hidden = true;
+                    alert('Your message could not be sent. Please try again.');
+                })
+                .finally(function () {
+                    submitButton.disabled = false;
+                });
         });
     }
 
