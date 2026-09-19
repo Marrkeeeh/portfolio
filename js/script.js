@@ -219,6 +219,7 @@
         const messageError = document.getElementById('messageError');
         const successMsg = document.getElementById('formSuccess');
         const submitButton = form.querySelector('button[type="submit"]');
+        successMsg.hidden = true;
 
         function setFieldError(input, errorEl, message) {
             if (message) {

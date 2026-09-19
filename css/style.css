@@ -1300,6 +1300,10 @@ body.dark .form-group textarea:focus {
     width: 100%;
 }
 
+.form-success[hidden] {
+    display: none;
+}
+
 /* ---------- Footer ---------- */
 .footer {
     background: var(--color-bg-alt);
