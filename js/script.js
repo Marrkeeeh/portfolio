@@ -309,10 +309,23 @@
             }
 
             submitButton.disabled = true;
+            const formData = new FormData(form);
+            const subjectValue = document.getElementById('subject').value.trim();
+            const messageValue = messageInput.value.trim();
+            const inquirySubject = subjectValue
+                ? 'Portfolio inquiry: ' + subjectValue
+                : 'New portfolio contact message';
+
+            formData.set('subject', inquirySubject);
+            formData.set('replyto', emailInput.value.trim());
+            formData.set(
+                'message',
+                'Subject: ' + (subjectValue || 'General inquiry') + '\n\n' + messageValue
+            );
 
             fetch(form.action, {
                 method: 'POST',
-                body: new FormData(form),
+                body: formData,
                 headers: { Accept: 'application/json' }
             })
                 .then(function (response) {
