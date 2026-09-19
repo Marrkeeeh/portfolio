@@ -14,6 +14,7 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+    overflow-x: hidden;
 }
 
 body {
@@ -25,6 +26,8 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: background-color 0.25s ease, color 0.25s ease;
+    min-width: 320px;
+    overflow-x: hidden;
 }
 
 img {
@@ -59,6 +62,20 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.25;
     color: var(--color-text-heading);
     font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+/* Allow grid and flex content to shrink instead of forcing horizontal scroll. */
+.container,
+.hero-container > *,
+.about-grid > *,
+.contact-grid > *,
+.project-card,
+.skill-card,
+.cert-card,
+.timeline-content,
+.resume-card {
+    min-width: 0;
 }
 
 code {
@@ -1204,6 +1221,7 @@ body.dark .contact-item-icon {
 .contact-text {
     color: var(--color-text);
     font-weight: 500;
+    overflow-wrap: anywhere;
 }
 
 .contact-form {
@@ -1626,6 +1644,14 @@ body.dark .form-group textarea:focus {
 
     .contact-form {
         padding: 18px 16px;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.95rem;
     }
 }
 
