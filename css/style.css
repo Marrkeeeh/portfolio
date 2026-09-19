@@ -524,6 +524,28 @@ body.dark .theme-toggle .icon-moon { display: none; }
     font-size: 1rem;
 }
 
+.hero-availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    padding: 7px 12px;
+    border: 1px solid var(--color-primary-light);
+    border-radius: 999px;
+    color: var(--color-primary);
+    background: var(--color-bg-card);
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.availability-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-success);
+    box-shadow: 0 0 0 4px var(--color-success-bg);
+}
+
 .hero-name {
     font-size: clamp(2.2rem, 5vw, 3.75rem);
     margin-bottom: 8px;
@@ -1473,6 +1495,8 @@ body.dark .form-group textarea:focus {
     .hero-description { margin-left: auto; margin-right: auto; }
     .hero-buttons { justify-content: center; }
     .hero-image-wrapper { max-width: 260px; }
+
+    .hero-availability { margin-left: auto; margin-right: auto; }
 
     .about-grid,
     .contact-grid {
