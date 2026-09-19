@@ -218,6 +218,16 @@
         const emailError = document.getElementById('emailError');
         const messageError = document.getElementById('messageError');
         const successMsg = document.getElementById('formSuccess');
+        const returnUrlInput = document.getElementById('contactReturnUrl');
+
+        if (returnUrlInput) {
+            returnUrlInput.value = window.location.origin + window.location.pathname + '?sent=1#contact';
+        }
+
+        if (new URLSearchParams(window.location.search).get('sent') === '1') {
+            successMsg.hidden = false;
+            window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
+        }
 
         function setFieldError(input, errorEl, message) {
             if (message) {
