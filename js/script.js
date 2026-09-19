@@ -317,6 +317,10 @@
             })
                 .then(function (response) {
                     if (!response.ok) throw new Error('Message could not be sent.');
+                    return response.json();
+                })
+                .then(function (result) {
+                    if (!result.success) throw new Error(result.message || 'Message could not be sent.');
                     successMsg.hidden = false;
                     form.reset();
                 })
