@@ -14,6 +14,7 @@
         initActiveNav();
         initScrollReveal();
         initProjectFilters();
+        initHeroInteractions();
         initFooterYear();
         initContactForm();
         initBackToTop();
@@ -248,7 +249,90 @@
         });
     }
 
-    /* ---------- 8. Contact Form Validation (Client-Side Only) ---------- */
+    /* ---------- 8. Hero Portrait and Ambient Aura ---------- */
+    function initHeroInteractions() {
+        const stage = document.getElementById('profileStage');
+        const photo = stage?.querySelector('.hero-photo');
+        const auraToggle = document.getElementById('auraToggle');
+        const auraLabel = auraToggle?.querySelector('.aura-label');
+        if (!stage || !photo || !auraToggle || !auraLabel) return;
+
+        let dragging = false;
+        let startX = 0;
+        let startY = 0;
+        let portraitX = 0;
+        let portraitY = 0;
+
+        function movePortrait(event) {
+            const deltaX = Math.max(-26, Math.min(26, event.clientX - startX));
+            const deltaY = Math.max(-26, Math.min(26, event.clientY - startY));
+            portraitX = deltaX;
+            portraitY = deltaY;
+            photo.style.transform = 'translate(' + portraitX + 'px, ' + portraitY + 'px) scale(1.03)';
+        }
+
+        stage.addEventListener('pointerdown', function (event) {
+            dragging = true;
+            startX = event.clientX - portraitX;
+            startY = event.clientY - portraitY;
+            stage.classList.add('is-dragging');
+            stage.setPointerCapture(event.pointerId);
+        });
+
+        stage.addEventListener('pointermove', function (event) {
+            if (dragging) movePortrait(event);
+        });
+
+        stage.addEventListener('pointerup', function (event) {
+            dragging = false;
+            stage.classList.remove('is-dragging');
+            stage.releasePointerCapture(event.pointerId);
+        });
+
+        stage.addEventListener('dblclick', function () {
+            portraitX = 0;
+            portraitY = 0;
+            photo.style.transform = '';
+        });
+
+        let audioContext;
+        let masterGain;
+        let oscillators;
+
+        function setAuraSound(isPlaying) {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                masterGain = audioContext.createGain();
+                masterGain.gain.value = 0;
+                masterGain.connect(audioContext.destination);
+
+                oscillators = [196, 246.94, 293.66].map(function (frequency, index) {
+                    const oscillator = audioContext.createOscillator();
+                    const gain = audioContext.createGain();
+                    oscillator.type = index === 1 ? 'sine' : 'triangle';
+                    oscillator.frequency.value = frequency;
+                    gain.gain.value = index === 1 ? 0.08 : 0.045;
+                    oscillator.connect(gain);
+                    gain.connect(masterGain);
+                    oscillator.start();
+                    return oscillator;
+                });
+            }
+
+            if (audioContext.state === 'suspended') audioContext.resume();
+            masterGain.gain.cancelScheduledValues(audioContext.currentTime);
+            masterGain.gain.setTargetAtTime(isPlaying ? 0.12 : 0, audioContext.currentTime, 0.35);
+            auraToggle.setAttribute('aria-pressed', isPlaying ? 'true' : 'false');
+            auraLabel.textContent = isPlaying ? 'Mute aura' : 'Play aura';
+        }
+
+        auraToggle.addEventListener('click', function () {
+            const isPlaying = auraToggle.getAttribute('aria-pressed') !== 'true';
+            setAuraSound(isPlaying);
+        });
+    }
+
+    /* ---------- 9. Contact Form Validation (Client-Side Only) ---------- */
     function initContactForm() {
         const form = document.getElementById('contactForm');
         if (!form) return;
@@ -390,7 +474,7 @@
         });
     }
 
-    /* ---------- 9. Back to Top Button ---------- */
+    /* ---------- 10. Back to Top Button ---------- */
     function initBackToTop() {
         const btn = document.getElementById('backToTop');
         if (!btn) return;
