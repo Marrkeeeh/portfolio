@@ -295,25 +295,15 @@
 
         // Form submit
         form.addEventListener('submit', function (e) {
-            e.preventDefault();
-
             const isNameValid = validateName();
             const isEmailValid = validateEmailField();
             const isMessageValid = validateMessage();
 
             if (!isNameValid || !isEmailValid || !isMessageValid) {
+                e.preventDefault();
                 successMsg.hidden = true;
                 return;
             }
-
-            // Simulate success (no backend yet)
-            successMsg.hidden = false;
-            form.reset();
-
-            // Hide success message after 8 seconds
-            setTimeout(function () {
-                successMsg.hidden = true;
-            }, 8000);
         });
     }
 
