@@ -1,0 +1,16 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio website for Mark Jeryl Omandam, a BSIT graduate interested in web development, IT systems, networking, databases, and IoT.",
+  "main": "_readpdf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pdf-parse": "^2.4.5",
+    "pdfjs-dist": "^6.3.289"
+  }
+}
