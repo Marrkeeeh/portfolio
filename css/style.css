@@ -589,7 +589,7 @@ body.dark .theme-toggle .icon-moon { display: none; }
     width: 100%;
     max-width: 380px;
     margin: 0 auto;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1 / 1;
     border-radius: var(--radius-xl);
     background: var(--color-primary-light);
     border: 2px solid var(--color-border-strong);
@@ -605,37 +605,14 @@ body.dark .theme-toggle .icon-moon { display: none; }
     filter: saturate(1.08) contrast(1.03);
 }
 
-.hero-image-hint {
-    margin-top: 12px;
-    color: var(--color-text-muted);
-    font-size: 0.78rem;
-    text-align: center;
-    letter-spacing: 0.02em;
-}
-
-.hero-image-hint span {
-    color: var(--color-accent);
-}
-
-.hero-photo,
-.hero-photo-placeholder {
+.hero-photo {
     width: 100%;
     height: 100%;
     border-radius: calc(var(--radius-xl) - 4px);
     object-fit: cover;
-    object-position: center 35%;
+    object-position: center top;
     background: var(--color-bg-card);
     border: 2px solid var(--color-border);
-}
-
-.hero-photo-placeholder {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-    font-weight: 800;
-    color: var(--color-primary);
-    background: var(--color-bg-alt);
 }
 
 .scroll-indicator {
