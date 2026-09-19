@@ -18,8 +18,7 @@ html {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-        Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-family: var(--font-body);
     line-height: 1.6;
     color: var(--color-text);
     background-color: var(--color-bg);
@@ -59,6 +58,7 @@ ul {
 }
 
 h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
     line-height: 1.25;
     color: var(--color-text-heading);
     font-weight: 700;
@@ -90,27 +90,30 @@ code {
    Modern aesthetic: Slate/charcoal neutrals + Teal accent (emerald-cyan)
 */
 :root {
-    /* Brand — Modern Teal / Emerald Cyan */
-    --color-primary: #0d9488;
-    --color-primary-hover: #0f766e;
-    --color-primary-light: #ccfbf1;
-    --color-accent: #06b6d4;
+    /* Brand — cobalt blue with a warm coral signal */
+    --font-body: 'Manrope', sans-serif;
+    --font-display: 'Space Grotesk', sans-serif;
+    --transition-base: 200ms ease;
+    --color-primary: #2563eb;
+    --color-primary-hover: #1d4ed8;
+    --color-primary-light: #dbeafe;
+    --color-accent: #f97316;
 
     /* Backgrounds — warm off-white, sophisticated */
-    --color-bg: #fafaf9;
-    --color-bg-alt: #f4f4f5;
+    --color-bg: #f8fafc;
+    --color-bg-alt: #eef2f7;
     --color-bg-card: #ffffff;
     --color-code-bg: #e4e4e7;
 
     /* Text — slate-gray, professional */
-    --color-text: #3f3f46;
-    --color-text-heading: #18181b;
-    --color-text-muted: #71717a;
-    --color-text-inverse: #fafaf9;
+    --color-text: #334155;
+    --color-text-heading: #0f172a;
+    --color-text-muted: #64748b;
+    --color-text-inverse: #f8fafc;
 
     /* Borders */
-    --color-border: #e4e4e7;
-    --color-border-strong: #d4d4d8;
+    --color-border: #d8e0ea;
+    --color-border-strong: #c5d0df;
 
     /* Status colors */
     --color-success: #059669;
@@ -140,22 +143,22 @@ code {
 
 /* ---------- Dark Mode (Modern Charcoal + Teal) ---------- */
 body.dark {
-    --color-primary: #14b8a6;
-    --color-primary-hover: #2dd4bf;
-    --color-primary-light: #134e4a;
-    --color-accent: #06b6d4;
+    --color-primary: #60a5fa;
+    --color-primary-hover: #93c5fd;
+    --color-primary-light: #1e3a5f;
+    --color-accent: #fb923c;
 
-    --color-bg: #0a0a0a;
-    --color-bg-alt: #121212;
-    --color-bg-card: #171717;
-    --color-code-bg: #262626;
+    --color-bg: #0b1220;
+    --color-bg-alt: #111c2e;
+    --color-bg-card: #14213a;
+    --color-code-bg: #1e293b;
 
-    --color-text: #d4d4d8;
-    --color-text-heading: #fafaf9;
-    --color-text-muted: #a1a1aa;
+    --color-text: #d5deeb;
+    --color-text-heading: #f8fafc;
+    --color-text-muted: #9aabc0;
 
-    --color-border: #262626;
-    --color-border-strong: #3f3f46;
+    --color-border: #263752;
+    --color-border-strong: #385273;
 
     --color-success-bg: #064e3b;
     --color-warning-bg: #451a03;
@@ -192,7 +195,7 @@ body.dark {
 }
 
 body.dark .navbar {
-    background-color: rgba(15, 23, 42, 0.9);
+    background-color: rgba(11, 18, 32, 0.92);
 }
 
 .navbar.scrolled {
@@ -244,7 +247,7 @@ body.dark .navbar {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 55%, #0f766e 100%);
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 58%, #f97316 100%);
     z-index: -2;
 }
 
@@ -262,7 +265,7 @@ body.dark .navbar {
 
 .logo-mark span.logo-initial {
     position: relative;
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family: var(--font-display);
     font-variant-numeric: tabular-nums;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -273,10 +276,10 @@ body.dark .navbar {
 }
 
 .nav-logo-text {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family: var(--font-display);
     font-weight: 700;
     font-size: 1rem;
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
     background: linear-gradient(135deg, var(--color-text-heading) 0%, var(--color-primary) 100%);
     -webkit-background-clip: text;
     background-clip: text;
@@ -312,7 +315,7 @@ body.dark .navbar {
 }
 
 body.dark .nav-link.active {
-    background: rgba(59, 130, 246, 0.15);
+    background: rgba(96, 165, 250, 0.16);
 }
 
 .nav-actions {
@@ -549,7 +552,7 @@ body.dark .theme-toggle .icon-moon { display: none; }
 .hero-name {
     font-size: clamp(2.2rem, 5vw, 3.75rem);
     margin-bottom: 8px;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
 }
 
 .hero-title {
@@ -668,7 +671,7 @@ body.dark .theme-toggle .icon-moon { display: none; }
 .section-title {
     font-size: clamp(1.8rem, 4vw, 2.5rem);
     margin-bottom: 16px;
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
 }
 
 .section-divider {
