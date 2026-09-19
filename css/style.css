@@ -90,30 +90,30 @@ code {
    Modern aesthetic: Slate/charcoal neutrals + Teal accent (emerald-cyan)
 */
 :root {
-    /* Brand — cobalt blue with a warm coral signal */
+    /* Original cozy field palette: moss, wheat, clay, and paper */
     --font-body: 'Manrope', sans-serif;
     --font-display: 'Space Grotesk', sans-serif;
     --transition-base: 200ms ease;
-    --color-primary: #2563eb;
-    --color-primary-hover: #1d4ed8;
-    --color-primary-light: #dbeafe;
-    --color-accent: #f97316;
+    --color-primary: #66834d;
+    --color-primary-hover: #4f6c3b;
+    --color-primary-light: #e3ecd8;
+    --color-accent: #c98245;
 
     /* Backgrounds — warm off-white, sophisticated */
-    --color-bg: #f8fafc;
-    --color-bg-alt: #eef2f7;
+    --color-bg: #fbf8ef;
+    --color-bg-alt: #f2ecdd;
     --color-bg-card: #ffffff;
     --color-code-bg: #e4e4e7;
 
     /* Text — slate-gray, professional */
-    --color-text: #334155;
-    --color-text-heading: #0f172a;
-    --color-text-muted: #64748b;
-    --color-text-inverse: #f8fafc;
+    --color-text: #485044;
+    --color-text-heading: #2d382a;
+    --color-text-muted: #737a6c;
+    --color-text-inverse: #fbf8ef;
 
     /* Borders */
-    --color-border: #d8e0ea;
-    --color-border-strong: #c5d0df;
+    --color-border: #ded7c7;
+    --color-border-strong: #c9c0ad;
 
     /* Status colors */
     --color-success: #059669;
@@ -143,22 +143,22 @@ code {
 
 /* ---------- Dark Mode (Modern Charcoal + Teal) ---------- */
 body.dark {
-    --color-primary: #60a5fa;
-    --color-primary-hover: #93c5fd;
-    --color-primary-light: #1e3a5f;
-    --color-accent: #fb923c;
+    --color-primary: #a6c77d;
+    --color-primary-hover: #c2df99;
+    --color-primary-light: #304329;
+    --color-accent: #e3a46b;
 
-    --color-bg: #0b1220;
-    --color-bg-alt: #111c2e;
-    --color-bg-card: #14213a;
-    --color-code-bg: #1e293b;
+    --color-bg: #171b15;
+    --color-bg-alt: #20271c;
+    --color-bg-card: #293323;
+    --color-code-bg: #303b2b;
 
-    --color-text: #d5deeb;
-    --color-text-heading: #f8fafc;
-    --color-text-muted: #9aabc0;
+    --color-text: #d9dfce;
+    --color-text-heading: #f6f2e8;
+    --color-text-muted: #aeb8a3;
 
-    --color-border: #263752;
-    --color-border-strong: #385273;
+    --color-border: #3a4631;
+    --color-border-strong: #526044;
 
     --color-success-bg: #064e3b;
     --color-warning-bg: #451a03;
@@ -495,7 +495,9 @@ body.dark .theme-toggle .icon-moon { display: none; }
     align-items: center;
     position: relative;
     overflow: hidden;
-    background: var(--color-bg);
+    background-color: var(--color-bg);
+    background-image: linear-gradient(rgba(102, 131, 77, 0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(102, 131, 77, 0.045) 1px, transparent 1px);
+    background-size: 24px 24px;
 }
 
 .hero::before {
@@ -582,16 +584,10 @@ body.dark .theme-toggle .icon-moon { display: none; }
     margin: 0 auto;
     aspect-ratio: 4 / 5;
     border-radius: var(--radius-xl);
-    background: linear-gradient(135deg, var(--color-primary-light), transparent);
+    background: var(--color-primary-light);
+    border: 2px solid var(--color-border-strong);
     padding: 6px;
     box-shadow: var(--shadow-xl);
-    cursor: grab;
-    touch-action: none;
-    user-select: none;
-}
-
-.hero-image-wrapper.is-dragging {
-    cursor: grabbing;
 }
 
 .hero-photo {
@@ -607,35 +603,11 @@ body.dark .theme-toggle .icon-moon { display: none; }
     color: var(--color-text-muted);
     font-size: 0.78rem;
     text-align: center;
+    letter-spacing: 0.02em;
 }
 
-.aura-toggle {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin: 12px auto 0;
-    padding: 8px 12px;
-    border: 1px solid var(--color-border);
-    border-radius: 999px;
-    color: var(--color-text-muted);
-    background: var(--color-bg-card);
-    font: inherit;
-    font-size: 0.78rem;
-    font-weight: 700;
-    transition: color var(--transition-base), border-color var(--transition-base), background-color var(--transition-base), transform var(--transition-base);
-}
-
-.aura-toggle:hover,
-.aura-toggle[aria-pressed="true"] {
-    color: var(--color-primary);
-    border-color: var(--color-primary);
-    background: var(--color-primary-light);
-    transform: translateY(-1px);
-}
-
-.aura-icon {
+.hero-image-hint span {
     color: var(--color-accent);
-    font-size: 1rem;
 }
 
 .hero-photo,
