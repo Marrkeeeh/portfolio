@@ -297,7 +297,8 @@
 
         let audioContext;
         let masterGain;
-        let oscillators;
+        let melodyTimer;
+        let noteIndex = 0;
 
         function setAuraSound(isPlaying) {
             if (!audioContext) {
@@ -305,25 +306,38 @@
                 masterGain = audioContext.createGain();
                 masterGain.gain.value = 0;
                 masterGain.connect(audioContext.destination);
-
-                oscillators = [196, 246.94, 293.66].map(function (frequency, index) {
-                    const oscillator = audioContext.createOscillator();
-                    const gain = audioContext.createGain();
-                    oscillator.type = index === 1 ? 'sine' : 'triangle';
-                    oscillator.frequency.value = frequency;
-                    gain.gain.value = index === 1 ? 0.08 : 0.045;
-                    oscillator.connect(gain);
-                    gain.connect(masterGain);
-                    oscillator.start();
-                    return oscillator;
-                });
             }
 
             if (audioContext.state === 'suspended') audioContext.resume();
             masterGain.gain.cancelScheduledValues(audioContext.currentTime);
             masterGain.gain.setTargetAtTime(isPlaying ? 0.12 : 0, audioContext.currentTime, 0.35);
             auraToggle.setAttribute('aria-pressed', isPlaying ? 'true' : 'false');
-            auraLabel.textContent = isPlaying ? 'Mute aura' : 'Play aura';
+            auraLabel.textContent = isPlaying ? 'Mute cozy tune' : 'Play cozy tune';
+
+            if (isPlaying && !melodyTimer) {
+                const melody = [261.63, 329.63, 392, 329.63, 293.66, 349.23, 440, 349.23];
+                const playNote = function () {
+                    const oscillator = audioContext.createOscillator();
+                    const noteGain = audioContext.createGain();
+                    const now = audioContext.currentTime;
+                    oscillator.type = 'triangle';
+                    oscillator.frequency.value = melody[noteIndex % melody.length];
+                    noteGain.gain.setValueAtTime(0, now);
+                    noteGain.gain.linearRampToValueAtTime(0.16, now + 0.03);
+                    noteGain.gain.exponentialRampToValueAtTime(0.001, now + 0.42);
+                    oscillator.connect(noteGain);
+                    noteGain.connect(masterGain);
+                    oscillator.start(now);
+                    oscillator.stop(now + 0.45);
+                    noteIndex += 1;
+                };
+
+                playNote();
+                melodyTimer = window.setInterval(playNote, 480);
+            } else if (!isPlaying && melodyTimer) {
+                window.clearInterval(melodyTimer);
+                melodyTimer = null;
+            }
         }
 
         auraToggle.addEventListener('click', function () {
