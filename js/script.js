@@ -254,6 +254,29 @@
         const stage = document.getElementById('profileStage');
         const photo = stage?.querySelector('.hero-photo');
         if (!stage || !photo) return;
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        function resetPortrait() {
+            stage.style.transform = '';
+            photo.style.transform = '';
+        }
+
+        stage.addEventListener('pointermove', function (event) {
+            if (reduceMotion.matches) return;
+
+            const bounds = stage.getBoundingClientRect();
+            const percentX = (event.clientX - bounds.left) / bounds.width - 0.5;
+            const percentY = (event.clientY - bounds.top) / bounds.height - 0.5;
+            const rotateY = percentX * 8;
+            const rotateX = percentY * -8;
+
+            stage.style.transform = 'rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+            photo.style.transform = 'translate(' + (percentX * 8) + 'px, ' + (percentY * 8) + 'px) translateZ(12px) scale(1.03)';
+        });
+
+        stage.addEventListener('pointerleave', resetPortrait);
+        stage.addEventListener('blur', resetPortrait);
     }
 
     /* ---------- 9. Contact Form Validation (Client-Side Only) ---------- */
