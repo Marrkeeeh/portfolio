@@ -2,9 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-sc    git add index.html
-    git commit -m "Add live portfolio project links"
-    git pushale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mark Jeryl Omandam | Fresh BSIT Graduate &amp; IT Support Candidate</title>
     <meta name="description" content="Mark Jeryl Omandam — BSIT graduate from Misamis University. IT operations, web development, network administration, troubleshooting, IoT systems, and full-stack PHP/Laravel development.">
     <meta name="author" content="Mark Jeryl Omandam">
@@ -33,6 +31,7 @@
 <body>
     <!-- ============ NAVIGATION ============ -->
     <header class="navbar" id="navbar">
+        <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
         <div class="container nav-container">
             <a href="#home" class="nav-logo" aria-label="Mark Jeryl Omandam - Home">
                 <span class="logo-mark" aria-hidden="true">MJO</span>
@@ -85,6 +84,13 @@
                         <a href="#projects" class="btn btn-primary">View My Projects</a>
                         <a href="assets/Mark_Jeryl_Omandam_CV.pdf" download class="btn btn-secondary">Download Resume</a>
                         <a href="#contact" class="btn btn-outline">Let's Work Together</a>
+                    </div>
+                    <div class="focus-switcher" aria-label="What I bring to a team">
+                        <span class="focus-label">My focus</span>
+                        <button class="focus-btn active" type="button" data-focus="build" aria-pressed="true">Build</button>
+                        <button class="focus-btn" type="button" data-focus="solve" aria-pressed="false">Solve</button>
+                        <button class="focus-btn" type="button" data-focus="learn" aria-pressed="false">Learn</button>
+                        <p class="focus-message" id="focusMessage" aria-live="polite">Useful websites and systems that make work easier.</p>
                     </div>
                 </div>
                 <div class="hero-image reveal">

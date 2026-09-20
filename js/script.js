@@ -15,6 +15,8 @@
         initScrollReveal();
         initProjectFilters();
         initHeroInteractions();
+        initFocusSwitcher();
+        initScrollProgress();
         initFooterYear();
         initContactForm();
         initBackToTop();
@@ -279,7 +281,47 @@
         stage.addEventListener('blur', resetPortrait);
     }
 
-    /* ---------- 9. Contact Form Validation (Client-Side Only) ---------- */
+    /* ---------- 9. Hero Focus Switcher ---------- */
+    function initFocusSwitcher() {
+        const buttons = document.querySelectorAll('.focus-btn');
+        const message = document.getElementById('focusMessage');
+        if (buttons.length === 0 || !message) return;
+
+        const messages = {
+            build: 'Useful websites and systems that make work easier.',
+            solve: 'Patient troubleshooting for technical problems and daily IT needs.',
+            learn: 'Curiosity, steady practice, and a willingness to grow with the team.'
+        };
+
+        buttons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                const focus = button.dataset.focus;
+                buttons.forEach(function (item) {
+                    const active = item === button;
+                    item.classList.toggle('active', active);
+                    item.setAttribute('aria-pressed', active ? 'true' : 'false');
+                });
+                message.textContent = messages[focus];
+            });
+        });
+    }
+
+    /* ---------- 10. Reading Progress ---------- */
+    function initScrollProgress() {
+        const progress = document.getElementById('scrollProgress');
+        if (!progress) return;
+
+        function updateProgress() {
+            const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+            const percentage = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+            progress.style.width = percentage + '%';
+        }
+
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        updateProgress();
+    }
+
+    /* ---------- 11. Contact Form Validation (Client-Side Only) ---------- */
     function initContactForm() {
         const form = document.getElementById('contactForm');
         if (!form) return;
@@ -421,7 +463,7 @@
         });
     }
 
-    /* ---------- 10. Back to Top Button ---------- */
+    /* ---------- 12. Back to Top Button ---------- */
     function initBackToTop() {
         const btn = document.getElementById('backToTop');
         if (!btn) return;
